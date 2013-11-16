@@ -8,12 +8,10 @@ When I purchase items I receive a receipt which lists the name of all the items 
 items, and the total amounts of sales taxes paid.  The rounding rules for sales tax are that for a tax rate of n%, a shelf price of p contains
 (np/100 rounded up to the nearest 0.05) amount of sales tax.
 
-Write an application that prints out the receipt details for these shopping baskets...
-
 <h3>INPUT:</h3>
 
 ```sh
-$ ruby bin/tax < inputs/input3
+$ bin/tax < inputs/input3
 ```
 
 1 imported bottle of perfume at 27.99
@@ -41,3 +39,8 @@ Sales Tax total =>  6.7
 
 Order Total =>  74.68
 
+<h2>Running the tests</h2>
+
+```sh
+$ rspec spec/
+```
