@@ -7,7 +7,7 @@ class SalesTax
     def exempted(item)
       item_arr = item.split
       exempted_list = ["chocolate","pill","medicine","book", "food"]
-      item_arr.any? {|type| exempted_list.include?(type.singularize) }
+      item_arr.any? {|type| exempted_list.include?(type.singularize.downcase) }
     end
 
     def split_input(line)
@@ -18,11 +18,13 @@ class SalesTax
 
     def calculate(inputs)
       products = []
+      quantities = []
       inputs.each do |input|
         quantity, name, price = split_input(input)
-        products << Product.new([name, price])
+        quantities << quantity.to_i
+        products << Product.new([name, price.to_f])
       end
-      order = Order.new products
+      order = Order.new(products, quantities)
       order.order_receipt
     end
   end
