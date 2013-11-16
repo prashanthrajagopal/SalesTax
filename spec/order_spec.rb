@@ -1,5 +1,6 @@
-require_relative "../lib/order"
-require_relative "../lib/product"
+require "spec_helper"
+require "order"
+require "product"
 
 describe "Order" do
   before :each do
@@ -18,71 +19,71 @@ describe "Order" do
   end
 
   #### Should check if the order is created
-  it "should create an order object" do
+  it "Should create an order object" do
     order = Order.new([@product, @product1, @product2], [1,1,1])
     order.should_not be_nil
   end
 
   #### Should calculate the correct sales tax
-  it "should calculate correct sales tax for each item in order" do
+  it "Should calculate correct sales tax for each item in order for example - 1" do
     case_1 = Order.new([@product, @product1, @product2], [1,1,1])
     case_1.calculate_tax.should == [0.0, 1.5, 0.0]
   end
 
-  it "should calculate correct sales tax for each item in order" do
+  it "Should calculate correct sales tax for each item in order for example - 2" do
     case_2 = Order.new([@product3, @product4], [1,1])
     case_2.calculate_tax.should == [0.5, 7.15]
   end
 
-  it "should calculate correct sales tax for each item in order" do
+  it "Should calculate correct sales tax for each item in order for example - 3" do
     case_3 = Order.new([@product5, @product6, @product7, @product8], [1,1,1,1])
     case_3.calculate_tax.should == [4.20, 1.90, 0.0, 0.60]
   end
 
   #### Should calculate the correct price of product with tax
-  it "should calculate correct total price for each product" do
+  it "Should calculate correct total price for each product for example - 1" do
     case_1 = Order.new([@product, @product1, @product2], [1,1,1])
     case_1.item_price_with_tax.should == [12.49, 16.49, 0.85]
   end
 
-  it "should calculate correct total price for each product" do
+  it "Should calculate correct total price for each product for example - 2" do
     case_2 = Order.new([@product3, @product4], [1,1])
     case_2.item_price_with_tax.should == [10.50, 54.65]
   end
 
-  it "should calculate correct total price for each product" do
+  it "Should calculate correct total price for each product for example - 3" do
     case_3 = Order.new([@product5, @product6, @product7, @product8], [1,1,1,1])
     case_3.item_price_with_tax.should == [32.19, 20.89, 9.75, 11.85]
   end
 
   #### Should calculate the sales tax total correctly
-  it "should calculate correct total the sales tax" do
+  it "Should calculate correct total the sales tax for example - 1" do
     case_1 = Order.new([@product, @product1, @product2], [1,1,1])
     case_1.sales_tax_total.should == 1.5
   end
 
-  it "should calculate correct total the sales tax" do
+  it "Should calculate correct total the sales tax for example - 2" do
     case_2 = Order.new([@product3, @product4], [1,1])
     case_2.sales_tax_total.should == 7.65
   end
 
-  it "should calculate correct total the sales tax" do
+  it "Should calculate correct total the sales tax for example - 3" do
     case_3 = Order.new([@product5, @product6, @product7, @product8], [1,1,1,1])
     case_3.sales_tax_total.should == 6.7
   end
 
   #### Should calculate the order total correctly
-  it "should calculate correct total of the order" do
+  it "Should calculate correct total of the order for example - 1" do
     case_1 = Order.new([@product, @product1, @product2], [1,1,1])
     case_1.total.should == 29.83
   end
 
-  it "should calculate correct total of the order" do
+  it "Should calculate correct total of the order for example - 2" do
     case_2 = Order.new([@product3, @product4], [1,1])
     case_2.total.should == 65.15
   end
 
-  it "should calculate correct total of the order" do
+  it "Should calculate correct total of the order for example - 3" do
     case_3 = Order.new([@product5, @product6, @product7, @product8], [1,1,1,1])
     case_3.total.should == 74.68
   end

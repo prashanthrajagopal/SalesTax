@@ -1,4 +1,4 @@
-require '../lib/sales_tax'
+require 'sales_tax'
 
 describe "sales tax" do
 

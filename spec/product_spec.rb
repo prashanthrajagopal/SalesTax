@@ -1,4 +1,4 @@
-require '../lib/product'
+require 'product'
 
 describe "Product Model" do
   it "should create a product" do
