@@ -44,3 +44,6 @@ Order Total =>  74.68
 ```sh
 $ rspec spec/
 ```
+
+<h2>Gems Required</h2>
+rspec, active support
