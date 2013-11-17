@@ -3,12 +3,13 @@ require_relative './order'
 require_relative './product'
 require 'bigdecimal'
 
+EXEMPTED_LIST = ["chocolate","pill","medicine","book", "food"]
+
 class SalesTax
   class << self
     def exempted(item)
       item_arr = item.split
-      exempted_list = ["chocolate","pill","medicine","book", "food"]
-      item_arr.any? {|type| exempted_list.include?(type.singularize.downcase) }
+      item_arr.any? {|type| EXEMPTED_LIST.include?(type.singularize.downcase) }
     end
 
     def split_input(line)

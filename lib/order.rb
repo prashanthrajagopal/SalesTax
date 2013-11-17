@@ -1,8 +1,6 @@
 require_relative './tax_calculator'
-
-Math.class_eval do
-  define_method(:round_nearest_5_cents, ->{ (self / 0.05).ceil * 0.05 })
-end
+require_relative './math'
+require 'bigdecimal'
 
 class Order
   def initialize(args, quant)
@@ -10,16 +8,12 @@ class Order
     @quantities = quant
   end
 
-  def round_nearest_5_cents(number)
-    (number.to_f / 0.05).ceil * 0.05
-  end
-
   def calculate_tax
     product_tax = []
     @products.each do |product|
       tc = TaxCalculator.new(product)
       tax_rate = tc.calculate_tax_rate
-      product_tax << (round_nearest_5_cents(product.price * tax_rate)).round(2)
+      product_tax << (Math.round_with_precision((product.price * tax_rate), BigDecimal('0.05'))).round(2)
     end
     product_tax
   end
@@ -42,7 +36,7 @@ class Order
 
   def order_receipt
     @products.each_with_index do |product, index|
-      puts "#{@quantities[index]} #{product.name}\t=>\t#{item_price_with_tax[index].to_f}"
+      puts "#{@quantities[index]} #{product.name} at #{product.price.to_f}\t=>\t#{item_price_with_tax[index].to_f}"
     end
     puts "Sales Tax total\t=>\t#{sales_tax_total.to_f}"
     puts "Order Total\t=>\t#{total.to_f}"
