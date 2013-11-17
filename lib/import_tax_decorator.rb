@@ -4,6 +4,6 @@ class ImportTax
   include TaxDecorator
 
   def get_rate
-    @decorated.get_rate + 0.05
+    @decorated.get_rate + BigDecimal('0.05')
   end
 end

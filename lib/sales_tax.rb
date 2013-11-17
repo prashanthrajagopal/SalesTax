@@ -1,6 +1,7 @@
 require 'active_support/core_ext/string'
 require_relative './order'
 require_relative './product'
+require 'bigdecimal'
 
 class SalesTax
   class << self
@@ -22,7 +23,7 @@ class SalesTax
       inputs.each do |input|
         quantity, name, price = split_input(input)
         quantities << quantity.to_i
-        products << Product.new([name, price.to_f])
+        products << Product.new([name, BigDecimal(price)])
       end
       order = Order.new(products, quantities)
       order.order_receipt

@@ -2,6 +2,6 @@
 class Tax
 
   def get_rate
-    0.0
+    BigDecimal('0.00')
   end
 end

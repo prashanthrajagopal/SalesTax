@@ -2,7 +2,7 @@ require 'product'
 
 describe "Product Model" do
   it "should create a product" do
-    p = Product.new(["The Rspec Book", 12.49])
+    p = Product.new(["The Rspec Book", BigDecimal('12.49')])
     p.should_not be_nil
   end
 

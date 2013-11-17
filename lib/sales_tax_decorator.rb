@@ -4,6 +4,6 @@ class SalesTax
   include TaxDecorator
 
   def get_rate
-    @decorated.get_rate + 0.1
+    @decorated.get_rate + BigDecimal('0.10')
   end
 end
